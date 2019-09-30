@@ -1,0 +1,93 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Query</title>
+    {% load staticfiles %}
+    <style>
+        .btn-group .button {
+                background-color: #008CBA;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+                float: right;
+            }
+            .btn-group .button:not(:last-child) {
+                border-right: none; /* Prevent double borders */
+            }
+            .btn-group .button:hover {
+                background-color: #008CBA;
+            }
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+            .btn-group .button:not(:last-child) {
+                border-right: none; /* Prevent double borders */
+            }
+            .btn-group .button:hover {
+                background-color: #008CBA;
+            }
+            .button2 {background-color: #008CBA;}
+        .div2 {
+        width: 300px;
+        height: 100px;    
+        padding: 50px;
+        border: 1px solid blue;
+}
+        </style>
+</head>  
+<body>
+<div class="btn-group">
+        <button class="button" onClick="location.href='/login'">Login</button>
+        <button class="button" onClick="location.href='/index'">New User</button>
+    </div>
+    <p style="clear:both"><br></p>
+    <br>
+<font size="3" color="blue"><h1>Type your query below:</h1></font>
+<br>
+<form method="POST" class="post-form" enctype="multipart/form-data">  
+        {% csrf_token %}
+        <p>
+            <font size="3" color="blue"><label><b>Name:</b></label><br>
+            <input type="text" name="Name"></font>
+        </p>
+        <p>
+            <font size="3" color="blue"><label><b>Email_ID:</b></label><br></font>
+            <input type="email" name="email">
+        </p>
+        <p>
+            <font size="3" color="blue"><label><b>Mobile:</b></label><br></font>
+            <input type="number" name="mobile">
+        </p>
+        <p>
+            <font size="3" color="blue"><label><b>Message:</b></label><br></font>
+            <textarea rows="4" cols="50" name="message"></textarea>
+        </p>  
+        <br> 
+        <button class="button button2">Submit</button>  
+</form>
+<br>  
+<br>
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <font size="3" color="red"><li>{{ message }}</li></font>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>  
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Success</title>
+    {% load staticfiles %}
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 32px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 8px 2px;
+            cursor: pointer;
+        }
+        
+        .button2 {background-color: #008CBA;}
+        </style>
+</head>  
+<body>
+    {% if user.username %}
+    <font size="4" color="green"><p>Welcome {{ user.username }}!!!</p></font>
+    <br>
+    <br>
+    <br>
+    <center>
+    <button class="button button2" onClick="location.href='addbook'">Add Books</button>  
+    <br>
+    <br>
+    <button class="button button2" onClick="location.href='view_book'">View Books</button>
+    <br>
+    <br>
+    <button class="button button2" onClick="location.href='query'">Make Query</button>
+    <br>
+    <br>
+    <button class="button button2" onClick="location.href='view_book'">Logout</button>
+    </center>
+    {% else %}
+    <p>Welcome user!</p><br/>
+    {% endif %}
+     <br>
+     <br>
+</body>  
+</html>
+
+

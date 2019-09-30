@@ -1,0 +1,71 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Book Records</title>
+    {% load staticfiles %}
+    <style>
+        .btn-group .button {
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            float: right;
+        }
+        .btn-group .button:not(:last-child) {
+            border-right: none; /* Prevent double borders */
+        }
+        .btn-group .button:hover {
+            background-color: #008CBA;
+        }
+    </style>
+</head>  
+<body>
+        <div class="btn-group">
+                <button class="button" onClick="location.href='/logout'">Logout</button>
+                <button class="button" onClick="location.href='/query'">Make Query</button>
+                <button class="button" onClick="location.href='/addbook'">Add Books</button>
+            </div>
+            <p style="clear:both"><br></p>
+<br>
+{% if add_book_view %}
+    <table class="table table-striped table-bordered table-sm">  
+        <thead class="thead-dark">  
+        <tr>  
+            <th>Book ID</th>  
+            <th>Book Name</th>  
+            <th>Book Publisher</th>    
+        </tr>  
+        </thead>  
+        <tbody>  
+    {% for login_users in add_book_view %}  
+        <tr>  
+            <td>{{ login_users.book_id }}</td>
+            <td>{{ login_users.book_names }}</td>  
+            <td>{{ login_users.book_publisher }}</td> 
+            <td>  
+                <a href="/returned/{{ login_users.id }}/">Return</a>
+            </td>  
+        </tr>  
+    {% endfor %}  
+        </tbody>  
+    </table>
+{% else %}
+<center><font size="6" color="red"><p> No Books are taken!!!  </p></font></center>
+{% endif %}
+<br>  
+<br>
+{% if messages %}
+<ul>
+	{% for message in messages %}
+    <font size="3" color="red"><li>{{ message }}</li></font>
+	{% endfor %}
+</ul>
+{% endif %}
+</body>  
+</html>

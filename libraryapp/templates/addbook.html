@@ -1,0 +1,71 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Book Records</title>
+    {% load staticfiles %}
+    <style>
+            .btn-group .button {
+                background-color: #008CBA;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+                float: right;
+            }
+            .btn-group .button:not(:last-child) {
+                border-right: none; /* Prevent double borders */
+            }
+            .btn-group .button:hover {
+                background-color: #008CBA;
+            }
+    </style>
+</head>  
+<body>
+<div class="btn-group">
+    <button class="button" onClick="location.href='/logout'">Logout</button>
+    <button class="button" onClick="location.href='/query'">Make Query</button>
+    <button class="button" onClick="location.href='/view_book'">View Books</button>
+</div>
+<p style="clear:both"><br></p>
+<br>
+<br>
+<form method="POST" class="post-form">  
+<table class="table table-striped table-bordered table-sm">  
+    <thead class="thead-dark">  
+    <tr>  
+        <th>Book ID</th>
+        <th>Book Name</th>  
+        <th>Book Publisher</th>    
+    </tr>  
+    </thead>  
+    <tbody>
+    <br>
+{% for Bookdata in showbooks %}  
+    <tr>  
+        <td>{{ Bookdata.bookid }}</td>
+        <td>{{ Bookdata.bookname }}</td>  
+        <td>{{ Bookdata.bookpublisher }}</td> 
+        <td>  
+            <a href="/Add/{{ Bookdata.bookid }}/{{ Bookdata.bookname}}/{{ Bookdata.bookpublisher}}/{{request.user.id}}/">Add Cart</a>
+        </td>  
+    </tr>  
+{% endfor %}  
+    </tbody>  
+</table> 
+</form>
+<br>  
+<br>
+{% if messages %}
+<ul>
+	{% for message in messages %}
+    <font size="3" color="red"><li>{{ message }}</li></font>
+	{% endfor %}
+</ul>
+{% endif %}
+</body>  
+</html>
